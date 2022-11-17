@@ -1,5 +1,6 @@
-import '/main.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
+import 'package:lab6/page/to_do_page.dart';
 
 class MyFormPage extends StatefulWidget {
     const MyFormPage({super.key});
@@ -25,6 +26,43 @@ class _MyFormPageState extends State<MyFormPage> {
         return Scaffold(
             appBar: AppBar(
                 title: Text('Form'),
+            ),
+            drawer: Drawer(
+                child: Column(
+                    children: [
+                        // Menambahkan clickable menu
+                        ListTile(
+                        title: const Text('Counter'),
+                        onTap: () {
+                            // Route menu ke halaman utama
+                            Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyHomePage()),
+                            );
+                        },
+                        ),
+                        ListTile(
+                        title: const Text('Form'),
+                        onTap: () {
+                            // Route menu ke halaman form
+                            Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyFormPage()),
+                            );
+                        },
+                        ),
+                        ListTile(
+                            title: const Text('To Do'),
+                            onTap: () {
+                                // Route menu ke halaman to do
+                                Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ToDoPage()),
+                                );
+                            },
+                        ),
+                    ],
+                ),
             ),
                 body: Form(
                     key: _formKey,
@@ -195,33 +233,33 @@ class _MyFormPageState extends State<MyFormPage> {
                                             showDialog(
                                                 context: context,
                                                 builder: (context) {
-                                                return Dialog(
-                                                    shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    ),
-                                                    elevation: 15,
-                                                    child: Container(
-                                                    child: ListView(
-                                                        padding: const EdgeInsets.only(top: 20, bottom: 20),
-                                                        shrinkWrap: true,
-                                                        children: <Widget>[
-                                                        Center(child: const Text('Informasi Data')),
-                                                        SizedBox(height: 20),
-                                                        // TODO: Munculkan informasi yang didapat dari form
-                                                        Text('Nama Lengkap: ' + _namaLengkap),
-                                                        TextButton(
-                                                            onPressed: () {
-                                                            Navigator.pop(context);
-                                                            },
-                                                            child: Text('Kembali'),
-                                                        ), 
-                                                        ],
-                                                    ),
-                                                    ),
-                                                );
+                                                    return Dialog(
+                                                        shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        ),
+                                                        elevation: 15,
+                                                        child: Container(
+                                                            child: ListView(
+                                                                padding: const EdgeInsets.only(top: 20, bottom: 20),
+                                                                shrinkWrap: true,
+                                                                children: <Widget>[
+                                                                Center(child: const Text('Informasi Data')),
+                                                                SizedBox(height: 20),
+                                                                // TODO: Munculkan informasi yang didapat dari form
+                                                                Text('Nama Lengkap: ' + _namaLengkap),
+                                                                    TextButton(
+                                                                        onPressed: () {
+                                                                        Navigator.pop(context);
+                                                                        },
+                                                                        child: Text('Kembali'),
+                                                                    ), 
+                                                                ],
+                                                            ),
+                                                        ),
+                                                    );
                                                 },
                                             );
-                                            }
+                                        }
                                     },
                                 ),
                             ],
